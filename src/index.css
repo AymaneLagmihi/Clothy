@@ -15,19 +15,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 25 15% 15%;
 
-    /* Sophisticated rose-gold primary */
-    --primary: 340 55% 55%;
+    /* Premium dark green primary */
+    --primary: 155 45% 35%;
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 340 45% 75%;
+    --primary-glow: 155 35% 55%;
 
     /* Gender-specific color schemes */
-    --women-primary: 340 55% 55%;
-    --women-accent: 15 45% 88%;
-    --women-glow: 340 45% 75%;
+    --women-primary: 155 45% 35%;
+    --women-accent: 155 25% 85%;
+    --women-glow: 155 35% 55%;
     
-    --men-primary: 210 50% 45%;
-    --men-accent: 210 25% 85%;
-    --men-glow: 210 40% 70%;
+    --men-primary: 155 50% 30%;
+    --men-accent: 155 20% 80%;
+    --men-glow: 155 30% 50%;
 
     /* Warm secondary tones */
     --secondary: 25 25% 92%;
@@ -46,23 +46,23 @@
 
     --border: 25 15% 88%;
     --input: 25 15% 90%;
-    --ring: 340 55% 55%;
+    --ring: 155 45% 35%;
 
     --radius: 0.75rem;
 
     /* Fashion gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(340 55% 55%), hsl(15 65% 65%), hsl(45 70% 75%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(25 15% 97%));
-    --gradient-accent: linear-gradient(135deg, hsl(340 35% 92%), hsl(25 25% 95%));
+    --gradient-hero: linear-gradient(135deg, hsl(155 45% 35%), hsl(165 50% 45%), hsl(175 55% 55%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(155 10% 97%));
+    --gradient-accent: linear-gradient(135deg, hsl(155 25% 92%), hsl(155 15% 95%));
     
     /* Gender-specific gradients */
-    --gradient-women: linear-gradient(135deg, hsl(340 55% 55%), hsl(15 65% 65%), hsl(45 70% 75%));
-    --gradient-men: linear-gradient(135deg, hsl(210 50% 45%), hsl(220 45% 55%), hsl(240 40% 65%));
+    --gradient-women: linear-gradient(135deg, hsl(155 45% 35%), hsl(165 50% 45%), hsl(175 55% 55%));
+    --gradient-men: linear-gradient(135deg, hsl(155 50% 30%), hsl(145 45% 35%), hsl(135 40% 40%));
 
     /* Elegant shadows */
-    --shadow-elegant: 0 10px 40px -10px hsl(340 55% 55% / 0.15);
+    --shadow-elegant: 0 10px 40px -10px hsl(155 45% 35% / 0.15);
     --shadow-soft: 0 4px 20px -4px hsl(25 15% 15% / 0.1);
-    --shadow-glow: 0 0 30px hsl(340 45% 75% / 0.3);
+    --shadow-glow: 0 0 30px hsl(155 35% 55% / 0.3);
 
     /* Smooth transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
