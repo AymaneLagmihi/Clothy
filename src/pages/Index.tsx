@@ -55,9 +55,36 @@ const Index = () => {
               <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">Clothy AI</span>
             </div>
             <div className="hidden md:flex items-center space-x-6">
-              <a href="#features" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Features</a>
-              <a href="#showcase" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Showcase</a>
-              <a href="#experience" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Experience</a>
+              <a
+                href="#features"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                onClick={e => {
+                  e.preventDefault();
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Features
+              </a>
+              <a
+                href="#showcase"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                onClick={e => {
+                  e.preventDefault();
+                  document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Showcase
+              </a>
+              <a
+                href="#experience"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                onClick={e => {
+                  e.preventDefault();
+                  document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Experience
+              </a>
               <Button variant="hero" size="sm" className="rounded-xl">
                 Try Now
               </Button>
