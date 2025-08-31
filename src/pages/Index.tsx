@@ -25,6 +25,7 @@ import heroImage from "@/assets/hero-fashion.jpg";
 import { WardrobeUpload } from "@/components/WardrobeUpload";
 import { StyleProfile } from "@/components/StyleProfile";
 import { OutfitSuggestions } from "@/components/OutfitSuggestions";
+import {ModeToggle} from "@/components/mode-toggle";
 
 const Index = () => {
   const [currentView, setCurrentView] = useState<'home' | 'upload' | 'profile' | 'outfits'>('home');
@@ -51,7 +52,7 @@ const Index = () => {
               <div className="h-10 w-10 bg-gradient-hero rounded-xl flex items-center justify-center">
                 <Wand2 className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">StyleSync</span>
+              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">Clothy AI</span>
             </div>
             <div className="hidden md:flex items-center space-x-6">
               <a href="#features" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Features</a>
@@ -60,6 +61,7 @@ const Index = () => {
               <Button variant="hero" size="sm" className="rounded-xl">
                 Try Now
               </Button>
+              <ModeToggle/>
             </div>
           </div>
         </nav>
@@ -467,7 +469,7 @@ const Index = () => {
               <div className="h-8 w-8 bg-gradient-hero rounded-lg flex items-center justify-center">
                 <Wand2 className="h-4 w-4 text-primary-foreground" />
               </div>
-              <span className="text-lg font-bold bg-gradient-hero bg-clip-text text-transparent">StyleSync AI</span>
+              <span className="text-lg font-bold bg-gradient-hero bg-clip-text text-transparent">Clothy AI</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Revolutionizing fashion with AI-powered styling solutions.
