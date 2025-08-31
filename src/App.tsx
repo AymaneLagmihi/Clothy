@@ -9,6 +9,7 @@ import {ThemeProvider} from "@/components/theme-provider";
 
 const queryClient = new QueryClient();
 
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
