@@ -26,6 +26,8 @@ import { WardrobeUpload } from "@/components/WardrobeUpload";
 import { StyleProfile } from "@/components/StyleProfile";
 import { OutfitSuggestions } from "@/components/OutfitSuggestions";
 import {ModeToggle} from "@/components/mode-toggle";
+import Login from "./Login";
+import Signup from "./Signup";
 
 const Index = () => {
   const [currentView, setCurrentView] = useState<'home' | 'upload' | 'profile' | 'outfits'>('home');
@@ -34,11 +36,9 @@ const Index = () => {
 
 
     if (authView === 'login') {
-      const Login = require('./Login').default;
       return <Login />;
     }
     if (authView === 'signup') {
-      const Signup = require('./Signup').default;
       return <Signup />;
     }
 
@@ -104,6 +104,7 @@ const Index = () => {
               <Button variant="secondary" size="sm" className="rounded-xl" onClick={() => setAuthView('signup')}>
                 Sign Up
               </Button>
+
               <ModeToggle/>
             </div>
           </div>
