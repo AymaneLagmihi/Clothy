@@ -29,18 +29,28 @@ import {ModeToggle} from "@/components/mode-toggle";
 
 const Index = () => {
   const [currentView, setCurrentView] = useState<'home' | 'upload' | 'profile' | 'outfits'>('home');
+    // Add navigation for login/signup
+    const [authView, setAuthView] = useState<'none' | 'login' | 'signup'>('none');
 
-  if (currentView === 'upload') {
-    return <WardrobeUpload onBack={() => setCurrentView('home')} />;
-  }
 
-  if (currentView === 'profile') {
-    return <StyleProfile onBack={() => setCurrentView('home')} />;
-  }
+    if (authView === 'login') {
+      const Login = require('./Login').default;
+      return <Login />;
+    }
+    if (authView === 'signup') {
+      const Signup = require('./Signup').default;
+      return <Signup />;
+    }
 
-  if (currentView === 'outfits') {
-    return <OutfitSuggestions onBack={() => setCurrentView('home')} />;
-  }
+    if (currentView === 'upload') {
+      return <WardrobeUpload onBack={() => setCurrentView('home')} />;
+    }
+    if (currentView === 'profile') {
+      return <StyleProfile onBack={() => setCurrentView('home')} />;
+    }
+    if (currentView === 'outfits') {
+      return <OutfitSuggestions onBack={() => setCurrentView('home')} />;
+    }
 
   return (
     <div className="min-h-screen bg-background">
@@ -87,6 +97,12 @@ const Index = () => {
               </a>
               <Button variant="hero" size="sm" className="rounded-xl">
                 Try Now
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-xl" onClick={() => setAuthView('login')}>
+                Login
+              </Button>
+              <Button variant="secondary" size="sm" className="rounded-xl" onClick={() => setAuthView('signup')}>
+                Sign Up
               </Button>
               <ModeToggle/>
             </div>
@@ -463,7 +479,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 size="hero"
-                className="rounded-2xl border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10"
+                className="rounded-2xl border-primary-foreground/20 text-foreground hover:bg-primary-foreground/50"
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
                 Contact Us
