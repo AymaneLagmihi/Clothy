@@ -7,10 +7,31 @@ import { Separator } from "../components/ui/separator";
 import { Checkbox } from "../components/ui/checkbox";
 import { Eye, EyeOff, Mail, Lock, User, Chrome } from "lucide-react";
 import { Link } from "react-router-dom";
+import { signup, signupWithGoogle } from "../action/auth/signup";
 
 const Signup: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
+
+  const handleSignup = async () => {
+    try {
+      const user = await signup(email, password)
+      console.log("Signed up:", user)
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
+  const handleGoogle = async () => {
+    try {
+      await signupWithGoogle()
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-secondary/20 p-4">
@@ -18,7 +39,7 @@ const Signup: React.FC = () => {
         {/* Logo/Brand */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            StyleSync AI
+            Clothly AI
           </h1>
           <p className="text-muted-foreground mt-2">Start your personalized style journey</p>
         </div>
@@ -34,9 +55,10 @@ const Signup: React.FC = () => {
           <CardContent className="space-y-6">
             {/* Google Sign Up */}
             <Button 
-              variant="outline" 
-              className="w-full h-12 border-2 hover:bg-accent/50 transition-all duration-300"
-              type="button"
+                variant="outline" 
+                className="w-full h-12 border-2 hover:bg-accent/50 transition-all duration-300"
+                type="button"
+                onClick={handleGoogle}
             >
               <Chrome className="mr-2 h-4 w-4" />
               Sign up with Google
@@ -66,6 +88,8 @@ const Signup: React.FC = () => {
                     type="text" 
                     placeholder="Enter your full name"
                     className="pl-10 h-12 border-2 focus:border-primary transition-colors"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required 
                   />
                 </div>
@@ -83,6 +107,8 @@ const Signup: React.FC = () => {
                     type="email" 
                     placeholder="name@example.com"
                     className="pl-10 h-12 border-2 focus:border-primary transition-colors"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required 
                   />
                 </div>
@@ -101,6 +127,8 @@ const Signup: React.FC = () => {
                     placeholder="Create a strong password"
                     className="pl-10 pr-10 h-12 border-2 focus:border-primary transition-colors"
                     required 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <Button
                     type="button"

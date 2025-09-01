@@ -6,9 +6,51 @@ import { Label } from "../components/ui/label";
 import { Separator } from "../components/ui/separator";
 import { Eye, EyeOff, Mail, Lock, Chrome } from "lucide-react";
 import { Link } from "react-router-dom";
+import { login, loginWithGoogle } from "../action/auth/login";
+import { forgotPassword } from "../action/auth/forgotPassword";
+import { logout } from "../action/auth/logout";
+
 
 const Login: React.FC = () => {
+
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleLogin = async () => {
+    try {
+      const user = await login(email, password)
+      console.log("Logged in:", user)
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
+  const handleGoogle = async () => {
+    try {
+      await loginWithGoogle()
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
+  const handleForgot = async () => {
+    try {
+      await forgotPassword(email)
+      alert("Password reset email sent!")
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
+  const handleLogout = async () => {
+    try {
+      await logout()
+      console.log("Logged out")
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-secondary/20 p-4">
@@ -16,7 +58,7 @@ const Login: React.FC = () => {
         {/* Logo/Brand */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            StyleSync AI
+            Clothly AI
           </h1>
           <p className="text-muted-foreground mt-2">Welcome back to your style journey</p>
         </div>
@@ -33,8 +75,10 @@ const Login: React.FC = () => {
             {/* Google Sign In */}
             <Button 
               variant="outline" 
+              id="login"
               className="w-full h-12 border-2 hover:bg-accent/50 transition-all duration-300"
               type="button"
+                onClick={handleGoogle}
             >
               <Chrome className="mr-2 h-4 w-4" />
               Continue with Google
@@ -64,6 +108,8 @@ const Login: React.FC = () => {
                     type="email" 
                     placeholder="name@example.com"
                     className="pl-10 h-12 border-2 focus:border-primary transition-colors"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required 
                   />
                 </div>
@@ -81,6 +127,8 @@ const Login: React.FC = () => {
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     className="pl-10 pr-10 h-12 border-2 focus:border-primary transition-colors"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required 
                   />
                   <Button
