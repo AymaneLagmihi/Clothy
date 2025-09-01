@@ -396,6 +396,122 @@ const Index = () => {
         </div>
       </section>
 
+      {/* AI Style Showcase */}
+      <section id="showcase" className="py-24 bg-gradient-subtle">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-6 mb-16">
+            <Badge variant="outline" className="px-4 py-2 rounded-full">
+              <Palette className="h-4 w-4 mr-2" />
+              Style Showcase
+            </Badge>
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
+              AI-Powered Style Magic
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              See how our AI transforms ordinary wardrobes into extraordinary style statements
+            </p>
+          </div>
+
+          {/* Before/After Style Transformations */}
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {[
+              { title: "Casual Chic", before: "Basic jeans & tee", after: "Elevated everyday look", confidence: "94%" },
+              { title: "Business Power", before: "Plain work attire", after: "Executive presence", confidence: "97%" },
+              { title: "Evening Glam", before: "Simple dress", after: "Red carpet ready", confidence: "92%" }
+            ].map((transformation, index) => (
+              <Card key={index} className="overflow-hidden bg-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 group">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    {/* Before Section */}
+                    <div className="p-6 bg-muted/20">
+                      <div className="aspect-[4/5] bg-muted/40 rounded-xl mb-4 flex items-center justify-center">
+                        <Camera className="h-12 w-12 text-muted-foreground/50" />
+                      </div>
+                      <h4 className="font-semibold text-sm text-muted-foreground mb-1">BEFORE</h4>
+                      <p className="text-sm">{transformation.before}</p>
+                    </div>
+                    
+                    {/* Transform Arrow */}
+                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                      <div className="bg-primary text-primary-foreground p-3 rounded-full shadow-glow group-hover:scale-110 transition-transform">
+                        <ArrowRight className="h-5 w-5" />
+                      </div>
+                    </div>
+                    
+                    {/* After Section */}
+                    <div className="p-6 bg-primary/5">
+                      <div className="aspect-[4/5] bg-gradient-hero rounded-xl mb-4 flex items-center justify-center">
+                        <Sparkles className="h-12 w-12 text-primary-foreground" />
+                      </div>
+                      <h4 className="font-semibold text-sm text-primary mb-1">AFTER</h4>
+                      <p className="text-sm font-medium">{transformation.after}</p>
+                      <div className="flex items-center space-x-2 mt-3">
+                        <Badge variant="secondary" className="text-xs">
+                          {transformation.confidence} Match
+                        </Badge>
+                        <Badge variant="outline" className="text-xs">
+                          {transformation.title}
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Style Categories Grid */}
+          <div className="space-y-8">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-foreground mb-4">Explore Style Categories</h3>
+              <p className="text-muted-foreground">Discover outfits tailored to every occasion and personal style</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { category: "Professional", items: "127 outfits", color: "bg-blue-500/10 text-blue-600", icon: "💼" },
+                { category: "Casual", items: "203 outfits", color: "bg-green-500/10 text-green-600", icon: "👕" },
+                { category: "Evening", items: "89 outfits", color: "bg-purple-500/10 text-purple-600", icon: "✨" },
+                { category: "Weekend", items: "156 outfits", color: "bg-orange-500/10 text-orange-600", icon: "🎯" }
+              ].map((category, index) => (
+                <Card key={index} className="bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer group">
+                  <CardContent className="p-6 text-center">
+                    <div className="text-3xl mb-3">{category.icon}</div>
+                    <h4 className="font-semibold text-lg mb-2">{category.category}</h4>
+                    <p className="text-sm text-muted-foreground mb-4">{category.items}</p>
+                    <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${category.color} group-hover:scale-105 transition-transform`}>
+                      Explore Style
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* AI Confidence Metrics */}
+          <div className="mt-16 text-center">
+            <Card className="bg-gradient-card border-0 shadow-elegant max-w-4xl mx-auto">
+              <CardContent className="p-8">
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="space-y-2">
+                    <div className="text-3xl font-bold text-primary">96%</div>
+                    <div className="text-sm text-muted-foreground">Average Style Confidence</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-3xl font-bold text-accent">2.3s</div>
+                    <div className="text-sm text-muted-foreground">Average Processing Time</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-3xl font-bold text-secondary-foreground">1M+</div>
+                    <div className="text-sm text-muted-foreground">Style Combinations Analyzed</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Experience Showcase */}
       <section id="experience" className="py-24">
         <div className="container mx-auto px-4">
