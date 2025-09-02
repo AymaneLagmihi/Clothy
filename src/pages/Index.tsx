@@ -28,6 +28,8 @@ import { OutfitSuggestions } from "@/components/OutfitSuggestions";
 import {ModeToggle} from "@/components/mode-toggle";
 import Login from "./Login";
 import Signup from "./Signup";
+import RotatingText from '@/components/RotatingText';
+
 
 const Index = () => {
   const [currentView, setCurrentView] = useState<'home' | 'upload' | 'profile' | 'outfits'>('home');
@@ -130,9 +132,19 @@ const Index = () => {
                 </Badge>
                 
                 <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  <span className="text-foreground">Style</span>
-                  <br />
-                  <span className="bg-gradient-hero bg-clip-text text-transparent">Revolution</span>
+                  <span className="bg-gradient-hero bg-clip-text text-transparent">Style</span>                  <br />
+                  <RotatingText
+                    texts={['Revolution', 'Atelier', 'Prestige', 'Monarch!']}
+                    mainClassName=" text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-left rounded-lg "
+                    staggerFrom={"last"}
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="text-foreground overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={2000}
+                 />
                   <br />
                   <span className="text-muted-foreground text-3xl lg:text-4xl font-medium">Starts Here</span>
                 </h1>
