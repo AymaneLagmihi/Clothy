@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import {ThemeProvider} from "@/components/theme-provider";
+import RequireAuth from "./middleware/RequireAuth";
 
 const queryClient = new QueryClient();
 
@@ -23,8 +24,18 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            
+            {/* PROTECTED ROUTES */}
+            <Route
+              path="/dashboard"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

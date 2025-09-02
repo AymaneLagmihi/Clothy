@@ -149,7 +149,7 @@ const Login: React.FC = () => {
 
               {/* Forgot Password */}
               <div className="flex justify-end">
-                <Button variant="link" className="px-0 font-normal text-sm">
+                <Button variant="link" className="px-0 font-normal text-sm" onClick={handleForgot}>
                   Forgot your password?
                 </Button>
               </div>
@@ -158,6 +158,9 @@ const Login: React.FC = () => {
               <Button 
                 type="submit" 
                 className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 font-medium"
+                onClick={
+                  handleLogin
+                }
               >
                 Sign in to your account
               </Button>
