@@ -10,6 +10,8 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import {ThemeProvider} from "@/components/theme-provider";
 import RequireAuth from "./middleware/RequireAuth";
+import PublicRoute from "./middleware/PublicRoute";
+import AuthCallback from "./action/auth/AuthCallback";
 
 const queryClient = new QueryClient();
 
@@ -21,9 +23,33 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+          
+            {/* PUBLIC ROUTES - Redirect authenticated users to dashboard */}
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <Index />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute>
+                  <Signup />
+                </PublicRoute>
+              }
+            />
+            <Route path="/auth/callback" element={<AuthCallback />} />
             
             {/* PROTECTED ROUTES */}
             <Route

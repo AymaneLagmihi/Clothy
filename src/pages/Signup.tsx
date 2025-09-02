@@ -8,6 +8,7 @@ import { Checkbox } from "../components/ui/checkbox";
 import { Eye, EyeOff, Mail, Lock, User, Chrome } from "lucide-react";
 import { Link } from "react-router-dom";
 import { signup, signupWithGoogle } from "../action/auth/signup";
+import { useNavigate } from "react-router-dom";
 
 const Signup: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,11 +16,13 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
     try {
       const user = await signup(email, password)
       console.log("Signed up:", user)
+      navigate("/dashboard");
     } catch (err) {
       console.error(err.message)
     }
@@ -173,6 +176,7 @@ const Signup: React.FC = () => {
                 type="submit" 
                 disabled={!acceptTerms}
                 className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={handleSignup}
               >
                 Create your account
               </Button>

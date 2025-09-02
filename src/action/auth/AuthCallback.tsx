@@ -10,7 +10,7 @@ export default function AuthCallback() {
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
         console.log("User logged in:", user)
-        navigate("/") // redirect to home after login
+        navigate("/dashboard") // redirect to home after login
       }
     }
     handleCallback()

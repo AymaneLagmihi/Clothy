@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { login, loginWithGoogle } from "../action/auth/login";
 import { forgotPassword } from "../action/auth/forgotPassword";
 import { logout } from "../action/auth/logout";
+import { useNavigate } from "react-router-dom";
 
 
 const Login: React.FC = () => {
@@ -16,11 +17,13 @@ const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const user = await login(email, password)
       console.log("Logged in:", user)
+      navigate("/dashboard");
     } catch (err) {
       console.error(err.message)
     }
@@ -29,6 +32,7 @@ const Login: React.FC = () => {
   const handleGoogle = async () => {
     try {
       await loginWithGoogle()
+      navigate("/dashboard");
     } catch (err) {
       console.error(err.message)
     }
