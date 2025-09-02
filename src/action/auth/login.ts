@@ -1,17 +1,18 @@
 import { supabase } from "@/lib/supabase/cliente";
 
 // Login with email & password
-export async function login(email, password) {
+export async function login(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
-  if (error) throw error;
-
-  // Redirect to dashboard if login is successful
-  if (data?.session) {
-    window.location.href = "/dashboard";
+  
+  if (error) {
+    console.error("Supabase login error:", error);
+    throw error;
   }
+
+  // Return the data for the component to handle navigation
   return data; 
 }
 
@@ -27,7 +28,12 @@ export async function loginWithGoogle() {
       }
     }
   });
-  if (error) throw error;
+  
+  if (error) {
+    console.error("Supabase Google OAuth error:", error);
+    throw error;
+  }
+  
   // No need to check for data.session, as the returned data does not have a session property for OAuth login
   return data;
 }

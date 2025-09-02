@@ -9,6 +9,8 @@ import { Eye, EyeOff, Mail, Lock, User, Chrome } from "lucide-react";
 import { Link } from "react-router-dom";
 import { signup, signupWithGoogle } from "../action/auth/signup";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../hooks/use-toast";
+import { Toaster } from "../components/ui/toaster";
 
 const Signup: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,23 +18,70 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const handleSignup = async () => {
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !password || !name) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!acceptTerms) {
+      toast({
+        title: "Error",
+        description: "Please accept the terms and conditions",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
-      const user = await signup(email, password)
-      console.log("Signed up:", user)
-      navigate("/dashboard");
-    } catch (err) {
-      console.error(err.message)
+      console.log("Attempting signup with:", { email, name, passwordLength: password.length });
+      
+      const user = await signup(email, password, name)
+      console.log("Signup successful:", user)
+      
+      toast({
+        title: "Success!",
+        description: "Account created successfully! Redirecting...",
+      });
+      
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
+      
+    } catch (err: any) {
+      console.error("Signup error:", err)
+      toast({
+        title: "Signup Failed",
+        description: err.message || "Signup failed. Please check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   }
 
   const handleGoogle = async () => {
     try {
       await signupWithGoogle()
-    } catch (err) {
+    } catch (err: any) {
       console.error(err.message)
+      toast({
+        title: "Google Signup Failed",
+        description: err.message || "Google signup failed. Please try again.",
+        variant: "destructive",
+      });
     }
   }
 
@@ -56,15 +105,19 @@ const Signup: React.FC = () => {
           </CardHeader>
           
           <CardContent className="space-y-6">
+            {/* Error Display */}
+            {/* Success Display */}
+
             {/* Google Sign Up */}
             <Button 
                 variant="outline" 
                 className="w-full h-12 border-2 hover:bg-accent/50 transition-all duration-300"
                 type="button"
                 onClick={handleGoogle}
+                disabled={isLoading}
             >
               <Chrome className="mr-2 h-4 w-4" />
-              Sign up with Google
+              {isLoading ? "Loading..." : "Sign up with Google"}
             </Button>
 
             <div className="relative">
@@ -78,7 +131,7 @@ const Signup: React.FC = () => {
               </div>
             </div>
 
-            <form className="space-y-4">
+            <form onSubmit={handleSignup} className="space-y-4">
               {/* Name Field */}
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium">
@@ -94,6 +147,7 @@ const Signup: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required 
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -113,6 +167,7 @@ const Signup: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required 
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -132,6 +187,7 @@ const Signup: React.FC = () => {
                     required 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    disabled={isLoading}
                   />
                   <Button
                     type="button"
@@ -174,11 +230,10 @@ const Signup: React.FC = () => {
               {/* Sign Up Button */}
               <Button 
                 type="submit" 
-                disabled={!acceptTerms}
+                disabled={!acceptTerms || isLoading}
                 className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={handleSignup}
               >
-                Create your account
+                {isLoading ? "Creating account..." : "Create your account"}
               </Button>
             </form>
 
@@ -197,6 +252,9 @@ const Signup: React.FC = () => {
           Protected by industry-standard encryption
         </div>
       </div>
+      
+      {/* Toast Notifications */}
+      <Toaster />
     </div>
   );
 };

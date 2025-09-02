@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase/cliente"
+import LoadingSpinner from "@/components/LoadingSpinner"
 
 export default function RequireAuth({ children }) {
   const [loading, setLoading] = useState(true)
@@ -15,7 +16,7 @@ export default function RequireAuth({ children }) {
     checkAuth()
   }, [])
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <LoadingSpinner size="lg" text="Checking authentication..." />
   if (!user) return <Navigate to="/login" />
 
   return children

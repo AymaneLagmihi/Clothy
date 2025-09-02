@@ -4,11 +4,10 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import { Separator } from "../components/ui/separator";
-import { Eye, EyeOff, Mail, Lock, Chrome } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, Chrome, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { login, loginWithGoogle } from "../action/auth/login";
 import { forgotPassword } from "../action/auth/forgotPassword";
-import { logout } from "../action/auth/logout";
 import { useNavigate } from "react-router-dom";
 
 
@@ -17,42 +16,59 @@ const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    setIsLoading(true);
+    setError("");
+
     try {
       const user = await login(email, password)
       console.log("Logged in:", user)
       navigate("/dashboard");
-    } catch (err) {
-      console.error(err.message)
+    } catch (err: any) {
+      console.error("Login error:", err)
+      setError(err.message || "Login failed. Please check your credentials.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
   const handleGoogle = async () => {
+    setIsLoading(true);
+    setError("");
+    
     try {
       await loginWithGoogle()
-      navigate("/dashboard");
-    } catch (err) {
-      console.error(err.message)
+      // Google OAuth will handle the redirect
+    } catch (err: any) {
+      console.error("Google login error:", err)
+      setError(err.message || "Google login failed. Please try again.");
+      setIsLoading(false);
     }
   }
 
   const handleForgot = async () => {
+    if (!email) {
+      setError("Please enter your email address first");
+      return;
+    }
+
     try {
       await forgotPassword(email)
       alert("Password reset email sent!")
-    } catch (err) {
-      console.error(err.message)
-    }
-  }
-
-  const handleLogout = async () => {
-    try {
-      await logout()
-      console.log("Logged out")
-    } catch (err) {
-      console.error(err.message)
+    } catch (err: any) {
+      console.error("Forgot password error:", err)
+      setError(err.message || "Failed to send reset email. Please try again.");
     }
   }
 
@@ -76,16 +92,25 @@ const Login: React.FC = () => {
           </CardHeader>
           
           <CardContent className="space-y-6">
+            {/* Error Display */}
+            {error && (
+              <div className="flex items-center space-x-2 p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
             {/* Google Sign In */}
             <Button 
               variant="outline" 
               id="login"
               className="w-full h-12 border-2 hover:bg-accent/50 transition-all duration-300"
               type="button"
-                onClick={handleGoogle}
+              onClick={handleGoogle}
+              disabled={isLoading}
             >
               <Chrome className="mr-2 h-4 w-4" />
-              Continue with Google
+              {isLoading ? "Loading..." : "Continue with Google"}
             </Button>
 
             <div className="relative">
@@ -99,7 +124,7 @@ const Login: React.FC = () => {
               </div>
             </div>
 
-            <form className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-4">
               {/* Email Field */}
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-sm font-medium">
@@ -115,6 +140,7 @@ const Login: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required 
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -134,6 +160,7 @@ const Login: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required 
+                    disabled={isLoading}
                   />
                   <Button
                     type="button"
@@ -141,6 +168,7 @@ const Login: React.FC = () => {
                     size="sm"
                     className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                     onClick={() => setShowPassword(!showPassword)}
+                    disabled={isLoading}
                   >
                     {showPassword ? (
                       <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -153,7 +181,13 @@ const Login: React.FC = () => {
 
               {/* Forgot Password */}
               <div className="flex justify-end">
-                <Button variant="link" className="px-0 font-normal text-sm" onClick={handleForgot}>
+                <Button 
+                  type="button"
+                  variant="link" 
+                  className="px-0 font-normal text-sm" 
+                  onClick={handleForgot}
+                  disabled={isLoading}
+                >
                   Forgot your password?
                 </Button>
               </div>
@@ -162,11 +196,9 @@ const Login: React.FC = () => {
               <Button 
                 type="submit" 
                 className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 font-medium"
-                onClick={
-                  handleLogin
-                }
+                disabled={isLoading}
               >
-                Sign in to your account
+                {isLoading ? "Signing in..." : "Sign in to your account"}
               </Button>
             </form>
 
