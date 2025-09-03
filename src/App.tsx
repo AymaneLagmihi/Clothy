@@ -12,6 +12,7 @@ import {ThemeProvider} from "@/components/theme-provider";
 import RequireAuth from "./middleware/RequireAuth";
 import PublicRoute from "./middleware/PublicRoute";
 import AuthCallback from "./action/auth/AuthCallback";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Toaster />
         <Sonner />
+        <SpeedInsights />
         <BrowserRouter>
           <Routes>
           
