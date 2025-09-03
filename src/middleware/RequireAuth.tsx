@@ -16,7 +16,7 @@ export default function RequireAuth({ children }) {
     checkAuth()
   }, [])
 
-  if (loading) return <LoadingSpinner size="lg" text="Checking authentication..." />
+  if (loading) return <LoadingSpinner size="lg" text="..." />
   if (!user) return <Navigate to="/login" />
 
   return children

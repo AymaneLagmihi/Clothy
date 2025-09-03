@@ -293,11 +293,14 @@ const Index = () => {
                     Upload Items
                   </Button>
                 </div>
-                <div className="relative">
-                  <Card className="bg-gradient-card border-0 shadow-elegant p-8">
+                <div className="relative bg-secondary/10 rounded-xl dark:bg-secondary/40 transition-colors ">
+                  <Card className="bg-gradient-card border-0 shadow-elegant p-8 transition-colors  dark:bg-gradient-to-br">
                     <div className="grid grid-cols-3 gap-4">
                       {[1, 2, 3, 4, 5, 6].map((item) => (
-                        <div key={item} className="aspect-square bg-muted/30 rounded-xl animate-pulse" />
+                        <div
+                          key={item}
+                          className="aspect-square rounded-xl animate-pulse transition-colors  bg-muted/30 dark:bg-muted/60"
+                        />
                       ))}
                     </div>
                   </Card>
@@ -308,7 +311,7 @@ const Index = () => {
             <TabsContent value="ai" className="space-y-8">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="relative order-last lg:order-first">
-                  <Card className="bg-gradient-card border-0 shadow-elegant p-8">
+                  <Card className="bg-gradient-card border-0 shadow-elegant p-8 dark:bg-gradient-to-br dark:bg-secondary/20">
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3">
                         <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -389,11 +392,11 @@ const Index = () => {
                   </Button>
                 </div>
                 <div className="relative">
-                  <Card className="bg-gradient-card border-0 shadow-elegant p-8">
+                  <Card className="bg-gradient-card border-0 shadow-elegant p-8 dark:bg-gradient-to-br">
                     <div className="space-y-4">
                       {[1, 2, 3].map((item) => (
                         <div key={item} className="flex items-center space-x-3 p-3 bg-background/50 rounded-xl">
-                          <div className="h-10 w-10 bg-muted/50 rounded-full animate-pulse" />
+                          <div className="h-10 w-10 bg-muted/50 rounded-full animate-pulse dark:bg-muted/60" />
                           <div className="flex-1 space-y-2">
                             <div className="h-3 bg-muted/50 rounded animate-pulse" />
                             <div className="h-2 bg-muted/30 rounded animate-pulse w-3/4" />
@@ -432,11 +435,11 @@ const Index = () => {
               { title: "Business Power", before: "Plain work attire", after: "Executive presence", confidence: "97%" },
               { title: "Evening Glam", before: "Simple dress", after: "Red carpet ready", confidence: "92%" }
             ].map((transformation, index) => (
-              <Card key={index} className="overflow-hidden bg-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 group">
+              <Card key={index} className="overflow-hidden bg-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 group dark:bg-gradient-to-br">
                 <CardContent className="p-0">
                   <div className="relative">
                     {/* Before Section */}
-                    <div className="p-6 bg-muted/20">
+                    <div className="p-6 bg-muted/20 dark:bg-muted/60">
                       <div className="aspect-[4/5] bg-muted/40 rounded-xl mb-4 flex items-center justify-center">
                         <Camera className="h-12 w-12 text-muted-foreground/50" />
                       </div>
@@ -446,7 +449,7 @@ const Index = () => {
                     
                     {/* Transform Arrow */}
                     <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                      <div className="bg-primary text-primary-foreground p-3 rounded-full shadow-glow group-hover:scale-110 transition-transform">
+                      <div className="bg-primary text-primary-foreground p-3 rounded-full shadow-glow group-hover:scale-110 transition-transform dark:bg-primary/80">
                         <ArrowRight className="h-5 w-5" />
                       </div>
                     </div>
@@ -487,7 +490,7 @@ const Index = () => {
                 { category: "Evening", items: "89 outfits", color: "bg-purple-500/10 text-purple-600", icon: "✨" },
                 { category: "Weekend", items: "156 outfits", color: "bg-orange-500/10 text-orange-600", icon: "🎯" }
               ].map((category, index) => (
-                <Card key={index} className="bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer group">
+                <Card key={index} className="bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer group dark:bg-gradient-to-br">
                   <CardContent className="p-6 text-center">
                     <div className="text-3xl mb-3">{category.icon}</div>
                     <h4 className="font-semibold text-lg mb-2">{category.category}</h4>
@@ -503,7 +506,7 @@ const Index = () => {
 
           {/* AI Confidence Metrics */}
           <div className="mt-16 text-center">
-            <Card className="bg-gradient-card border-0 shadow-elegant max-w-4xl mx-auto">
+            <Card className="bg-gradient-card border-0 shadow-elegant max-w-4xl mx-auto dark:bg-gradient-to-br">
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="space-y-2">
@@ -539,7 +542,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group">
+            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group dark:bg-gradient-to-br">
               <CardContent className="p-8 text-center space-y-4">
                 <div className="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-primary/20 transition-colors">
                   <Star className="h-8 w-8 text-primary" />
@@ -549,7 +552,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group">
+            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group dark:bg-gradient-to-br">
               <CardContent className="p-8 text-center space-y-4">
                 <div className="h-16 w-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-accent/20 transition-colors">
                   <Users className="h-8 w-8 text-accent" />
@@ -559,7 +562,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group">
+            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group dark:bg-gradient-to-br">
               <CardContent className="p-8 text-center space-y-4">
                 <div className="h-16 w-16 bg-secondary/20 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-secondary/30 transition-colors">
                   <Globe className="h-8 w-8 text-secondary-foreground" />
@@ -574,7 +577,7 @@ const Index = () => {
 
       {/* Final CTA */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-gradient-hero dark:bg-gradient-hero" />
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
@@ -599,7 +602,7 @@ const Index = () => {
                 variant="elegant" 
                 size="hero"
                 onClick={() => setCurrentView('upload')}
-                className="rounded-2xl shadow-glow hover:shadow-elegant bg-background text-foreground hover:bg-background/90"
+                className="rounded-2xl shadow-glow hover:shadow-elegant bg-background text-foreground hover:bg-background/90 dark:bg-background/90"
               >
                 <Upload className="h-5 w-5 mr-2" />
                 Start Your Journey
@@ -608,7 +611,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 size="hero"
-                className="rounded-2xl border-primary-foreground/20 text-foreground hover:bg-primary-foreground/50"
+                className="rounded-2xl border-primary-foreground/20 text-foreground hover:bg-primary-foreground/50 dark:border-primary-foreground/20 dark:text-foreground dark:hover:bg-primary-foreground/50"
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
                 Contact Us
@@ -634,14 +637,14 @@ const Index = () => {
       </section>
 
       {/* Minimalist Footer */}
-      <footer className="border-t border-border/50 bg-background/80 backdrop-blur-sm py-8">
+      <footer className="border-t border-border/50 bg-background/80 backdrop-blur-sm py-8 dark:bg-background/80">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="flex items-center space-x-3">
-              <div className="h-8 w-8 bg-gradient-hero rounded-lg flex items-center justify-center">
+              <div className="h-8 w-8 bg-gradient-hero rounded-lg flex items-center justify-center dark:bg-gradient-hero">
                 <Wand2 className="h-4 w-4 text-primary-foreground" />
               </div>
-              <span className="text-lg font-bold bg-gradient-hero bg-clip-text text-transparent">Clothy AI</span>
+              <span className="text-lg font-bold bg-gradient-hero bg-clip-text text-transparent dark:bg-gradient-hero">Clothy AI</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Revolutionizing fashion with AI-powered styling solutions.

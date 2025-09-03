@@ -16,7 +16,7 @@ export default function PublicRoute({ children }) {
     checkAuth()
   }, [])
 
-  if (loading) return <LoadingSpinner size="lg" text="Checking authentication..." />
+  if (loading) return <LoadingSpinner size="lg" text="..." />
   if (user) return <Navigate to="/dashboard" />
 
   return children
