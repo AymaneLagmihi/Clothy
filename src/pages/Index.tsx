@@ -293,13 +293,13 @@ const Index = () => {
                     Upload Items
                   </Button>
                 </div>
-                <div className="relative bg-secondary/10 rounded-xl dark:bg-secondary/40 transition-colors ">
-                  <Card className="bg-gradient-card border-0 shadow-elegant p-8 transition-colors  dark:bg-gradient-to-br">
+                <div className="relative bg-secondary/10 rounded-xl dark:bg-secondary/20 transition-colors">
+                  <Card className="bg-card border-0 shadow-elegant p-8">
                     <div className="grid grid-cols-3 gap-4">
                       {[1, 2, 3, 4, 5, 6].map((item) => (
                         <div
                           key={item}
-                          className="aspect-square rounded-xl animate-pulse transition-colors  bg-muted/30 dark:bg-muted/60"
+                          className="aspect-square rounded-xl animate-pulse transition-colors bg-muted/30 dark:bg-muted/60"
                         />
                       ))}
                     </div>
@@ -311,7 +311,7 @@ const Index = () => {
             <TabsContent value="ai" className="space-y-8">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="relative order-last lg:order-first">
-                  <Card className="bg-gradient-card border-0 shadow-elegant p-8 dark:bg-gradient-to-br dark:bg-secondary/20">
+                  <Card className="bg-card border-0 shadow-elegant p-8">
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3">
                         <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -322,7 +322,7 @@ const Index = () => {
                           <div className="text-sm text-muted-foreground">Perfect for: Evening Event</div>
                         </div>
                       </div>
-                      <div className="h-40 bg-muted/30 rounded-xl animate-pulse" />
+                      <div className="h-40 bg-muted/30 dark:bg-muted/60 rounded-xl animate-pulse" />
                       <div className="flex justify-between items-center">
                         <span className="text-sm font-medium">Confidence: 96%</span>
                         <Badge variant="secondary">Trending</Badge>
@@ -392,10 +392,10 @@ const Index = () => {
                   </Button>
                 </div>
                 <div className="relative">
-                  <Card className="bg-gradient-card border-0 shadow-elegant p-8 dark:bg-gradient-to-br">
+                  <Card className="bg-card border-0 shadow-elegant p-8">
                     <div className="space-y-4">
                       {[1, 2, 3].map((item) => (
-                        <div key={item} className="flex items-center space-x-3 p-3 bg-background/50 rounded-xl">
+                        <div key={item} className="flex items-center space-x-3 p-3 bg-background/50 dark:bg-card/50 rounded-xl">
                           <div className="h-10 w-10 bg-muted/50 rounded-full animate-pulse dark:bg-muted/60" />
                           <div className="flex-1 space-y-2">
                             <div className="h-3 bg-muted/50 rounded animate-pulse" />
@@ -506,7 +506,7 @@ const Index = () => {
 
           {/* AI Confidence Metrics */}
           <div className="mt-16 text-center">
-            <Card className="bg-gradient-card border-0 shadow-elegant max-w-4xl mx-auto dark:bg-gradient-to-br">
+            <Card className="bg-card border-0 shadow-elegant max-w-4xl mx-auto">
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="space-y-2">
@@ -542,7 +542,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group dark:bg-gradient-to-br">
+            <Card className="bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group">
               <CardContent className="p-8 text-center space-y-4">
                 <div className="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-primary/20 transition-colors">
                   <Star className="h-8 w-8 text-primary" />
@@ -552,7 +552,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group dark:bg-gradient-to-br">
+            <Card className="bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group">
               <CardContent className="p-8 text-center space-y-4">
                 <div className="h-16 w-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-accent/20 transition-colors">
                   <Users className="h-8 w-8 text-accent" />
@@ -562,7 +562,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group dark:bg-gradient-to-br">
+            <Card className="bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-500 group">
               <CardContent className="p-8 text-center space-y-4">
                 <div className="h-16 w-16 bg-secondary/20 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-secondary/30 transition-colors">
                   <Globe className="h-8 w-8 text-secondary-foreground" />

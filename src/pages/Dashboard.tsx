@@ -75,10 +75,10 @@ const Dashboard = () => {
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">
-              <div className="h-9 w-9 bg-gradient-hero rounded-xl flex items-center justify-center">
+              <div className="h-9 w-9 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center">
                 <Wand2 className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                 Clothy AI
               </span>
             </div>
@@ -91,7 +91,7 @@ const Dashboard = () => {
               <input
                 type="text"
                 placeholder="Search outfits, items..."
-                className="w-full pl-10 pr-4 py-2 rounded-xl border bg-background/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="w-full pl-10 pr-4 py-2 rounded-xl border bg-background/50 focus:outline-none focus:ring-2 focus:ring-primary/20 dark:bg-card/50"
               />
             </div>
           </div>
@@ -116,7 +116,7 @@ const Dashboard = () => {
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-card" align="end" forceMount>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">Jane Doe</p>
@@ -167,7 +167,7 @@ const Dashboard = () => {
 
           {/* Stats Cards */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border-0 shadow-soft hover:shadow-elegant transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Items</CardTitle>
                 <Shirt className="h-4 w-4 text-muted-foreground" />
@@ -181,7 +181,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border-0 shadow-soft hover:shadow-elegant transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Outfits Created</CardTitle>
                 <Wand2 className="h-4 w-4 text-muted-foreground" />
@@ -195,7 +195,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border-0 shadow-soft hover:shadow-elegant transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Style Score</CardTitle>
                 <Star className="h-4 w-4 text-muted-foreground" />
@@ -209,7 +209,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border-0 shadow-soft hover:shadow-elegant transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Community Likes</CardTitle>
                 <Heart className="h-4 w-4 text-muted-foreground" />
@@ -226,7 +226,7 @@ const Dashboard = () => {
 
           {/* Dashboard Tabs */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full max-w-md grid-cols-3 bg-muted/50 rounded-xl">
+            <TabsList className="grid w-full max-w-md grid-cols-3 bg-muted/50 dark:bg-muted/30 rounded-xl">
               <TabsTrigger value="overview" className="rounded-lg">Overview</TabsTrigger>
               <TabsTrigger value="wardrobe" className="rounded-lg">Wardrobe</TabsTrigger>
               <TabsTrigger value="analytics" className="rounded-lg">Analytics</TabsTrigger>
@@ -236,7 +236,7 @@ const Dashboard = () => {
             <TabsContent value="overview" className="space-y-6">
               <div className="grid gap-6 lg:grid-cols-7">
                 {/* Recent Outfits */}
-                <Card className="lg:col-span-4 bg-gradient-card border-0 shadow-elegant">
+                <Card className="lg:col-span-4 bg-card border-0 shadow-elegant">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Sparkles className="mr-2 h-5 w-5" />
@@ -246,7 +246,7 @@ const Dashboard = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {recentOutfits.map((outfit) => (
-                      <div key={outfit.id} className="flex items-center justify-between p-4 bg-background/50 rounded-xl">
+                      <div key={outfit.id} className="flex items-center justify-between p-4 bg-muted/30 dark:bg-muted/60 rounded-xl hover:bg-muted/50 dark:hover:bg-muted/70 transition-colors">
                         <div className="flex items-center space-x-4">
                           <div className="h-12 w-12 bg-primary/10 rounded-xl flex items-center justify-center">
                             <Shirt className="h-6 w-6 text-primary" />
@@ -273,7 +273,7 @@ const Dashboard = () => {
                 </Card>
 
                 {/* Quick Actions */}
-                <Card className="lg:col-span-3 bg-gradient-card border-0 shadow-elegant">
+                <Card className="lg:col-span-3 bg-card border-0 shadow-elegant">
                   <CardHeader>
                     <CardTitle>Quick Actions</CardTitle>
                     <CardDescription>Style yourself in seconds</CardDescription>
@@ -308,7 +308,7 @@ const Dashboard = () => {
             {/* Wardrobe Tab */}
             <TabsContent value="wardrobe" className="space-y-6">
               <div className="grid gap-6 lg:grid-cols-3">
-                <Card className="lg:col-span-2 bg-gradient-card border-0 shadow-elegant">
+                <Card className="lg:col-span-2 bg-card border-0 shadow-elegant">
                   <CardHeader className="flex flex-row items-center justify-between">
                     <div>
                       <CardTitle>Wardrobe Overview</CardTitle>
@@ -322,7 +322,7 @@ const Dashboard = () => {
                   <CardContent>
                     <div className="grid grid-cols-4 gap-4">
                       {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                        <div key={item} className="aspect-square bg-muted/30 rounded-xl border-2 border-dashed border-muted-foreground/20 flex items-center justify-center group hover:border-primary/50 transition-colors cursor-pointer">
+                        <div key={item} className="aspect-square bg-muted/30 dark:bg-muted/60 rounded-xl border-2 border-dashed border-muted-foreground/20 flex items-center justify-center group hover:border-primary/50 hover:bg-muted/50 dark:hover:bg-muted/70 transition-colors cursor-pointer">
                           <Shirt className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
                         </div>
                       ))}
@@ -330,14 +330,14 @@ const Dashboard = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-gradient-card border-0 shadow-elegant">
+                <Card className="bg-card border-0 shadow-elegant">
                   <CardHeader>
                     <CardTitle>Categories</CardTitle>
                     <CardDescription>Browse by type</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {["Tops", "Bottoms", "Dresses", "Shoes", "Accessories"].map((category) => (
-                      <div key={category} className="flex items-center justify-between p-3 bg-background/50 rounded-xl">
+                      <div key={category} className="flex items-center justify-between p-3 bg-muted/30 dark:bg-muted/60 rounded-xl hover:bg-muted/50 dark:hover:bg-muted/70 transition-colors">
                         <span className="font-medium">{category}</span>
                         <Badge variant="secondary">
                           {Math.floor(Math.random() * 20) + 5}
@@ -352,7 +352,7 @@ const Dashboard = () => {
             {/* Analytics Tab */}
             <TabsContent value="analytics" className="space-y-6">
               <div className="grid gap-6 lg:grid-cols-2">
-                <Card className="bg-gradient-card border-0 shadow-elegant">
+                <Card className="bg-card border-0 shadow-elegant">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <BarChart3 className="mr-2 h-5 w-5" />
@@ -373,7 +373,7 @@ const Dashboard = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-gradient-card border-0 shadow-elegant">
+                <Card className="bg-card border-0 shadow-elegant">
                   <CardHeader>
                     <CardTitle>Weekly Activity</CardTitle>
                     <CardDescription>Your styling journey this week</CardDescription>

@@ -140,7 +140,7 @@ export const OutfitSuggestions: React.FC<OutfitSuggestionsProps> = ({ onBack }) 
             const isLiked = likedOutfits.includes(outfit.id);
             
             return (
-              <Card key={outfit.id} className="bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-300 group">
+                              <Card key={outfit.id} className="bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-300 group">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
@@ -199,7 +199,7 @@ export const OutfitSuggestions: React.FC<OutfitSuggestionsProps> = ({ onBack }) 
                     <p className="text-sm font-medium text-foreground">Outfit Items</p>
                     <div className="grid grid-cols-2 gap-2">
                       {outfit.items.map((item, index) => (
-                        <div key={index} className="text-sm text-muted-foreground bg-muted/50 rounded-lg px-3 py-2">
+                        <div key={index} className="text-sm text-muted-foreground bg-muted/50 dark:bg-muted/30 rounded-lg px-3 py-2">
                           {item}
                         </div>
                       ))}

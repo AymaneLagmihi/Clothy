@@ -104,13 +104,13 @@ export const StyleProfile: React.FC<StyleProfileProps> = ({ onBack }) => {
 
         {/* Step 1: Gender Selection */}
         {currentStep === 1 && (
-          <Card className={`border-0 shadow-soft ${gender === 'women' ? 'bg-gradient-women' : gender === 'men' ? 'bg-gradient-men' : 'bg-gradient-card'}`}>
+                          <Card className={`border-0 shadow-soft ${gender === 'women' ? 'bg-gradient-women' : gender === 'men' ? 'bg-gradient-men' : 'bg-card'}`}>
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center space-x-2">
                 <User className="h-6 w-6 text-primary" />
-                <span className={gender ? (gender === 'women' ? 'text-white' : 'text-white') : 'text-foreground'}>Choose Your Style</span>
+                <span className={gender ? 'text-primary-foreground' : 'text-foreground'}>Choose Your Style</span>
               </CardTitle>
-              <CardDescription className={gender ? (gender === 'women' ? 'text-white/80' : 'text-white/80') : 'text-muted-foreground'}>
+              <CardDescription className={gender ? 'text-primary-foreground/80' : 'text-muted-foreground'}>
                 Select the style category that best represents you
               </CardDescription>
             </CardHeader>
@@ -119,14 +119,14 @@ export const StyleProfile: React.FC<StyleProfileProps> = ({ onBack }) => {
                 <Card
                   className={`cursor-pointer transition-all duration-300 ${
                     gender === 'women'
-                      ? 'bg-white/20 text-white shadow-glow border-white/30'
+                      ? 'bg-primary/20 text-primary-foreground shadow-glow border-primary/30'
                       : 'bg-background hover:shadow-soft'
                   }`}
                   onClick={() => setGender('women')}
                 >
                   <CardContent className="p-8 text-center space-y-4">
                     <div className="h-16 w-16 rounded-full bg-gradient-women flex items-center justify-center mx-auto">
-                      <Heart className="h-8 w-8 text-white" />
+                      <Heart className="h-8 w-8 text-primary-foreground" />
                     </div>
                     <h3 className="text-xl font-semibold">Women's Style</h3>
                     <p className="text-sm opacity-80">Elegant, sophisticated, and feminine fashion</p>
@@ -136,14 +136,14 @@ export const StyleProfile: React.FC<StyleProfileProps> = ({ onBack }) => {
                 <Card
                   className={`cursor-pointer transition-all duration-300 ${
                     gender === 'men'
-                      ? 'bg-white/20 text-white shadow-glow border-white/30'
+                      ? 'bg-primary/20 text-primary-foreground shadow-glow border-primary/30'
                       : 'bg-background hover:shadow-soft'
                   }`}
                   onClick={() => setGender('men')}
                 >
                   <CardContent className="p-8 text-center space-y-4">
                     <div className="h-16 w-16 rounded-full bg-gradient-men flex items-center justify-center mx-auto">
-                      <Star className="h-8 w-8 text-white" />
+                      <Star className="h-8 w-8 text-primary-foreground" />
                     </div>
                     <h3 className="text-xl font-semibold">Men's Style</h3>
                     <p className="text-sm opacity-80">Classic, modern, and refined menswear</p>
@@ -156,7 +156,7 @@ export const StyleProfile: React.FC<StyleProfileProps> = ({ onBack }) => {
 
         {/* Step 2: Style Preferences */}
         {currentStep === 2 && (
-          <Card className="bg-gradient-card border-0 shadow-soft">
+          <Card className="bg-card border-0 shadow-soft">
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center space-x-2">
                 <Heart className="h-6 w-6 text-primary" />
@@ -191,7 +191,7 @@ export const StyleProfile: React.FC<StyleProfileProps> = ({ onBack }) => {
 
         {/* Step 3: Color Preferences */}
         {currentStep === 3 && (
-          <Card className="bg-gradient-card border-0 shadow-soft">
+          <Card className="bg-card border-0 shadow-soft">
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center space-x-2">
                 <Palette className="h-6 w-6 text-primary" />
@@ -235,7 +235,7 @@ export const StyleProfile: React.FC<StyleProfileProps> = ({ onBack }) => {
 
         {/* Step 4: Body Type */}
         {currentStep === 4 && (
-          <Card className="bg-gradient-card border-0 shadow-soft">
+          <Card className="bg-card border-0 shadow-soft">
             <CardHeader className="text-center">
               <CardTitle>Body Type & Fit Preferences</CardTitle>
               <CardDescription>
@@ -266,7 +266,7 @@ export const StyleProfile: React.FC<StyleProfileProps> = ({ onBack }) => {
 
         {/* Step 5: Lifestyle */}
         {currentStep === 5 && (
-          <Card className="bg-gradient-card border-0 shadow-soft">
+          <Card className="bg-card border-0 shadow-soft">
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center space-x-2">
                 <Star className="h-6 w-6 text-primary" />

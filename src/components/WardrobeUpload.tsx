@@ -67,7 +67,7 @@ export const WardrobeUpload: React.FC<WardrobeUploadProps> = ({ onBack }) => {
           className={`mb-12 border-2 border-dashed transition-all duration-300 ${
             isDragging 
               ? 'border-primary bg-primary/5 shadow-glow' 
-              : 'border-border bg-gradient-card hover:border-primary/50'
+              : 'border-border bg-card hover:border-primary/50'
           }`}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
@@ -127,7 +127,7 @@ export const WardrobeUpload: React.FC<WardrobeUploadProps> = ({ onBack }) => {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {uploadedItems.map((item, index) => (
-                <Card key={index} className="group bg-gradient-card border-0 shadow-soft hover:shadow-elegant transition-all duration-300">
+                <Card key={index} className="group bg-card border-0 shadow-soft hover:shadow-elegant transition-all duration-300">
                   <CardContent className="p-4 space-y-3">
                     <div className="relative aspect-square rounded-lg overflow-hidden bg-muted">
                       <img 
@@ -181,7 +181,7 @@ export const WardrobeUpload: React.FC<WardrobeUploadProps> = ({ onBack }) => {
         )}
 
         {/* Quick Tips */}
-        <Card className="mt-12 bg-gradient-accent border-0 shadow-soft">
+        <Card className="mt-12 bg-gradient-accent border-0 shadow-soft dark: bg-muted/20">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Image className="h-5 w-5 text-primary" />
