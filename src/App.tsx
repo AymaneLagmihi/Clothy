@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import {ThemeProvider} from "@/components/theme-provider";
@@ -54,6 +55,7 @@ const App = () => (
               }
             />
             <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             
             {/* PROTECTED ROUTES */}
             <Route

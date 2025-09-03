@@ -10,10 +10,10 @@ export async function signup(email: string, password: string, name: string) {
     email,
     password,
     options: {
-      emailRedirectTo: "http://localhost:8080/auth/callback",
+      emailRedirectTo: `${import.meta.env.VITE_PUBLIC_APP_URL}/auth/callback`,
       data: {
-        name: name,
-        avatar_url: avatar_url,
+        name,
+        email,
       }
     }
   });
@@ -26,7 +26,7 @@ export async function signupWithGoogle() {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: { 
-      redirectTo: "http://localhost:8080/auth/callback",
+      redirectTo: `${import.meta.env.VITE_PUBLIC_APP_URL}/auth/callback`,
       queryParams: {
         prompt: 'select_account'
       }

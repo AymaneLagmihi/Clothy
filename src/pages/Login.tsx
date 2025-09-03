@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { login, loginWithGoogle } from "../action/auth/login";
 import { forgotPassword } from "../action/auth/forgotPassword";
 import { useNavigate } from "react-router-dom";
+import { Toaster } from "../components/ui/toaster";
+import { useToast } from "../hooks/use-toast";
 
 
 const Login: React.FC = () => {
@@ -19,12 +21,17 @@ const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !password) {
-      setError("Please fill in all fields");
+        toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "default",
+      });
       return;
     }
 
@@ -37,7 +44,11 @@ const Login: React.FC = () => {
       navigate("/dashboard");
     } catch (err: any) {
       console.error("Login error:", err)
-      setError(err.message || "Login failed. Please check your credentials.");
+      toast({
+        title: "Google Signin Failed",
+        description: err.message || "Login failed. Please check your credentials..",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -52,23 +63,37 @@ const Login: React.FC = () => {
       // Google OAuth will handle the redirect
     } catch (err: any) {
       console.error("Google login error:", err)
-      setError(err.message || "Google login failed. Please try again.");
+      toast({
+        title: "Signin Failed",
+        description: err.message || "Google login failed. Please try again.",
+        variant: "destructive",
+      });
       setIsLoading(false);
     }
   }
 
   const handleForgot = async () => {
     if (!email) {
-      setError("Please enter your email address first");
+      toast({
+        title: "Please enter your email address first",
+        variant: "default",
+      });
+
       return;
     }
 
     try {
       await forgotPassword(email)
-      alert("Password reset email sent!")
+      toast({
+        title: "Password reset email sent!",
+        variant: "default",
+      });
     } catch (err: any) {
-      console.error("Forgot password error:", err)
-      setError(err.message || "Failed to send reset email. Please try again.");
+
+      toast({
+        title: "Failed to send reset email. Please try again.",
+        variant: "destructive",
+      });
     }
   }
 
@@ -217,6 +242,8 @@ const Login: React.FC = () => {
           By continuing, you agree to our Terms of Service and Privacy Policy
         </div>
       </div>
+      {/* Toast Notifications */}
+      <Toaster />
     </div>
   );
 };

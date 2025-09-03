@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase/cliente";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -67,6 +68,18 @@ const Dashboard = () => {
       }
     }
 
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+      // Fetch user on mount
+      const getUser = async () => {
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error) console.error(error);
+        else setUser(user);
+      };
+      getUser();
+    },[])
+
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -119,8 +132,8 @@ const Dashboard = () => {
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">Jane Doe</p>
-                    <p className="text-xs leading-none text-muted-foreground">jane@example.com</p>
+                    <p className="text-sm font-medium leading-none">{user?.user_metadata?.name || "No name set"}</p>
+                    <p className="text-xs leading-none text-muted-foreground">{user?.email}</p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -148,7 +161,7 @@ const Dashboard = () => {
           {/* Welcome Section */}
           <div className="flex items-center justify-between">
             <div className="space-y-1">
-              <h1 className="text-3xl font-bold tracking-tight">Welcome back, Jane!</h1>
+              <h1 className="text-3xl font-bold tracking-tight">Welcome back,{user?.user_metadata?.name || "friend"}!</h1>
               <p className="text-muted-foreground">
                 Here's what's happening with your style journey today.
               </p>
