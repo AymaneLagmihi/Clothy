@@ -15,6 +15,7 @@ import PublicRoute from "./middleware/PublicRoute";
 import AuthCallback from "./action/auth/AuthCallback";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react";
+import Verification from "./pages/Verification";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,15 @@ const App = () => (
                 </PublicRoute>
               }
             />
+            <Route
+              path="/verification"
+              element={
+                <PublicRoute>
+                  <Verification />
+                </PublicRoute>
+              }
+            />
+
             <Route
               path="/login"
               element={
