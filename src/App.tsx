@@ -13,6 +13,7 @@ import RequireAuth from "./middleware/RequireAuth";
 import PublicRoute from "./middleware/PublicRoute";
 import AuthCallback from "./action/auth/AuthCallback";
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <SpeedInsights />
+        <Analytics />
         <BrowserRouter>
           <Routes>
           
