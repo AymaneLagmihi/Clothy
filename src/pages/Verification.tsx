@@ -3,20 +3,25 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase/cliente";
-import { toast } from "sonner";
 import { useToast} from "@/hooks/use-toast";
 import { Toaster } from "../components/ui/toaster";
 
 
 const Verification = () => {
+  const { toast } = useToast();
+  
   // Button handler for verifying email
   const handleVerify = async () => {
     const { data: userData } = await supabase.auth.getUser();
     const email = userData?.user?.email;
-    const { toast } = useToast();
+    
     
     if (!email) {
-      alert("No user email found. Please log in first.");
+      toast({
+        title: "Error",
+        description: "No user email found. Please log in first.",
+        variant: "destructive",
+      });
       return;
     }
     const { error } = await supabase.auth.resend({ type: "signup", email });
@@ -54,7 +59,3 @@ const Verification = () => {
 };
 
 export default Verification;
-
-options: {
-  emailRedirectTo: `${import.meta.env.VITE_PUBLIC_APP_URL}/verification`
-}

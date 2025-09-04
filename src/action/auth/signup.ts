@@ -14,6 +14,7 @@ export async function signup(email: string, password: string, name: string) {
       data: {
         name,
         email,
+        avatar_url
       }
     }
   });

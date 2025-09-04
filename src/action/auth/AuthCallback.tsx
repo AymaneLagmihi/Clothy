@@ -2,19 +2,41 @@ import { useEffect } from "react"
 import { supabase } from "@/lib/supabase/cliente"
 import { useNavigate } from "react-router-dom"
 
-export default function AuthCallback() {
+const AuthCallback = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
     const handleCallback = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        console.log("User logged in:", user)
-        navigate("/dashboard") // redirect to home after login
+      const { data: { session }, error } = await supabase.auth.getSession()
+
+      // Get the hash fragment from the URL
+      const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      const type = hashParams.get("type")
+
+      if (error) {
+        console.error("Auth error:", error)
+        navigate("/login")
+        return
+      }
+
+      // If this is an email verification callback, redirect to verification page
+      if (type === "email_verification") {
+        navigate("/verification")
+        return
+      }
+
+      // Otherwise, redirect to dashboard for normal sign-ins
+      if (session) {
+        navigate("/dashboard")
+      } else {
+        navigate("/login")
       }
     }
+
     handleCallback()
   }, [navigate])
 
-  return <p>Loading...</p>
+  return null
 }
+
+export default AuthCallback
