@@ -3,14 +3,13 @@ import { OAuthResponse } from "@supabase/supabase-js";
 
 // Signup with email & password
 export async function signup(email: string, password: string, name: string) {
-  // Generate avatar URL with first 2 letters of name
   const avatar_url = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&size=128&length=2`;
   
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: `${import.meta.env.VITE_PUBLIC_APP_URL}/auth/callback`,
+      emailRedirectTo: `${import.meta.env.VITE_PUBLIC_APP_URL}/auth/callback?type=email_verification`,
       data: {
         name,
         email,
@@ -18,6 +17,7 @@ export async function signup(email: string, password: string, name: string) {
       }
     }
   });
+  
   if (error) throw error;
   return data;
 }
