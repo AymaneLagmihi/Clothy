@@ -9,7 +9,7 @@ export async function signup(email: string, password: string, name: string) {
     email,
     password,
     options: {
-      emailRedirectTo: `${import.meta.env.VITE_PUBLIC_APP_URL}/auth/callback?type=email_verification`,
+      emailRedirectTo: `${import.meta.env.VITE_PUBLIC_APP_URL}/verification`,
       data: {
         name,
         email,
